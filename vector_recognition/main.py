@@ -79,7 +79,6 @@ def classificator(region):
             
     return "?"
 
-
 image = imread("alphabet.png")[:, :, :-1]
 abinary = image.mean(2) > 0
 alphabet = label(abinary)
