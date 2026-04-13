@@ -2,9 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from skimage.measure import label, regionprops
 from skimage.io import imread
-from pathlib import Path
-
-save_path = Path(__file__).parent
 
 def count_holes(region):
     shape = region.image.shape
@@ -92,9 +89,6 @@ aprops = regionprops(alphabet)
 
 result = {}
 
-image_path = save_path / "out_tree"
-image_path.mkdir(exist_ok=True)
-
 plt.figure(figsize=(5, 7))
 
 for region in aprops:
@@ -105,7 +99,6 @@ for region in aprops:
     plt.cla()
     plt.title(f"Class - '{symbol}'")
     plt.imshow(region.image)
-    plt.savefig(image_path / f"image_{region.label}.png")
 
 print(result)
 print(f"Процент распознавания: {(1 - result.get("?", 0) / len(aprops)) * 100}")
